@@ -119,16 +119,17 @@
   /* work */
   .work{background:var(--lake);color:#fff}
   .work .sec-head p{color:rgba(255,255,255,.75)}
-  .show{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid rgba(255,255,255,.25);border-radius:16px;overflow:hidden;transition:transform .2s}
+  .show{display:grid;grid-template-columns:1fr;max-width:760px;margin:0 auto;text-align:center;gap:0;border:1.5px solid rgba(255,255,255,.25);border-radius:16px;overflow:hidden;transition:transform .2s}
   .show:hover{transform:translateY(-4px)}
   .show{background:var(--lake-2)}
-  .show .vis{background:var(--ink);padding:44px 36px;display:flex;align-items:center;justify-content:center;min-height:300px}
+  .show .vis{background:var(--ink);padding:46px 36px;display:flex;align-items:center;justify-content:center}
   .show .vis img{width:100%;max-width:380px;height:auto;display:block}
-  .show .txt{padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+  .show .txt{padding:32px 40px 36px;display:flex;flex-direction:column;align-items:center;gap:12px}
+  .show .txt h3{display:none}
   .show .txt h3{font-size:2.4rem;line-height:1}
   .show .txt p{color:rgba(255,255,255,.8)}
   .show .go{font-weight:600;color:var(--sun)}
-  .more{margin-top:20px;color:rgba(255,255,255,.65);font-size:.95rem}
+  .more{text-align:center;margin-top:20px;color:rgba(255,255,255,.65);font-size:.95rem}
 
   /* process timeline */
   .line-steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
