@@ -64,6 +64,25 @@
   .step h3{font-size:1.15rem;color:var(--navy);margin-bottom:6px}
   .step p{color:var(--muted);font-size:.95rem}
 
+
+  /* work */
+  .work-card{display:grid;grid-template-columns:1.2fr 1fr;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 0 var(--sand-2),0 10px 30px -18px rgba(12,34,51,.35);transition:transform .2s}
+  .work-card:hover{transform:translateY(-3px)}
+  .browser{background:var(--navy);padding:22px;display:flex;align-items:center}
+  .frame{width:100%;background:#111;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+  .bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:#1d1d1d}
+  .bar i{width:9px;height:9px;border-radius:50%;background:#555;display:block}
+  .bar em{font-style:normal;font-size:.75rem;color:#aaa;margin-left:10px;background:#2a2a2a;padding:3px 10px;border-radius:6px}
+  .shot{aspect-ratio:16/10;background:linear-gradient(135deg,#0b0b0b,#1c1c1c 60%,#2b2b2b);display:flex;flex-direction:column;justify-content:center;padding:8%;color:#fff}
+  .shot small{letter-spacing:.2em;text-transform:uppercase;font-size:.65rem;color:#aaa}
+  .shot b{font-family:Fraunces,serif;font-size:clamp(1.4rem,3vw,2.2rem);margin:6px 0}
+  .shot span{font-size:.8rem;color:#bbb}
+  .work-info{padding:36px;display:flex;flex-direction:column;justify-content:center}
+  .tag{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sea);margin-bottom:8px}
+  .work-info h3{font-size:1.6rem;color:var(--navy);margin-bottom:10px}
+  .work-info p{color:var(--muted);margin-bottom:22px}
+  .work-info .btn{align-self:flex-start}
+
   /* why */
   .why{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
   .checks{list-style:none;display:grid;gap:16px}
@@ -89,6 +108,7 @@
   @media (max-width:860px){
     .grid,.steps{grid-template-columns:1fr 1fr}
     .why{grid-template-columns:1fr}
+    .work-card{grid-template-columns:1fr}
     .links a:not(.btn){display:none}
   }
   @media (max-width:560px){
@@ -109,6 +129,7 @@
     </a>
     <nav class="links">
       <a href="#services">Services</a>
+      <a href="#work">Our work</a>
       <a href="#process">How it works</a>
       <a href="#why">Why us</a>
       <a href="#contact" class="btn">Get a quote</a>
@@ -155,6 +176,29 @@
         <p>Hosting, updates, and changes handled for you on a simple monthly or yearly plan. No surprises.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head">
+      <h2>Our work</h2>
+      <p>A recent site we built for a local business. Click to see it live.</p>
+    </div>
+    <a class="work-card" href="https://ben-mocha.vercel.app" target="_blank" rel="noopener">
+      <div class="browser">
+        <div class="frame">
+          <div class="bar"><i></i><i></i><i></i><em>ben-mocha.vercel.app</em></div>
+          <div class="shot"><small>East Tawas, MI</small><b>After Five Tint</b><span>Auto, home &amp; commercial window tinting</span></div>
+        </div>
+      </div>
+      <div class="work-info">
+        <span class="tag">Window tinting · East Tawas</span>
+        <h3>After Five Tint</h3>
+        <p>A bold, mobile-friendly site for a local tint, wrap, and detailing shop, built to show off their services and get customers to call.</p>
+        <span class="btn">View live site →</span>
+      </div>
+    </a>
   </div>
 </section>
 
