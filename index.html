@@ -12,14 +12,14 @@
 <meta property="og:image" content="https://bayharbormarketing.vercel.app/og.png">
 <meta property="og:url" content="https://bayharbormarketing.vercel.app">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0f4c5c">
+<meta name="theme-color" content="#0e3150">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#f5f2ea; --paper-2:#ebe6da; --ink:#141414; --soft:#5c5a55;
-    --lake:#0f4c5c; --lake-2:#0a3642; --sun:#f2b33d; --line:#d8d2c3;
+    --paper:#f3eee2; --paper-2:#e8e0cf; --ink:#0c1c2c; --soft:#56606a;
+    --lake:#15466b; --lake-2:#0e3150; --sun:#f0b23a; --line:#d6ccb8; --buoy:#d6452f;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -36,8 +36,9 @@
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
   .brand svg{flex:none;display:block}
   .wm{display:flex;flex-direction:column;line-height:1}
-  .wm b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.03em}
-  .wm small{font-size:.66rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--lake);margin-top:4px}
+  .wm b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.22rem;letter-spacing:.01em;text-transform:uppercase}
+  .wm small{display:flex;align-items:center;gap:6px;font-size:.62rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--lake);margin-top:5px}
+  .wm small::before,.wm small::after{content:"";height:1.5px;width:12px;background:var(--buoy)}
   .brand .mark{width:34px;height:34px;border-radius:50%;background:var(--lake);display:grid;place-items:center}
   .menu{display:flex;gap:26px;font-size:.93rem;color:var(--soft)}
   .menu a:hover{color:var(--ink)}
@@ -57,29 +58,38 @@
   .btn.line{border:1.5px solid var(--ink)}
   .btn.line:hover{background:var(--ink);color:var(--paper)}
 
-  /* hero visual: stacked devices */
-  .stage{position:relative;height:460px}
-  .win{position:absolute;background:#fff;border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:10px 10px 0 var(--ink)}
-  .win .tb{display:flex;gap:5px;padding:9px 11px;border-bottom:1.5px solid var(--ink);background:var(--paper-2)}
-  .win .tb i{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink)}
-  .w1{top:0;right:0;width:88%;height:300px}
-  .w1 .in{padding:22px}
-  .bar-l{height:10px;border-radius:5px;background:var(--paper-2);margin-bottom:10px}
-  .w1 .big{height:26px;width:70%;background:var(--lake);border-radius:6px;margin-bottom:14px}
-  .w1 .pill{display:inline-block;height:26px;width:90px;border-radius:6px;background:var(--sun);margin-top:12px}
-  .w1 .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
-  .w1 .tiles span{height:60px;border-radius:6px;background:var(--paper-2)}
-  .phone{position:absolute;left:0;bottom:0;width:170px;height:300px;background:#fff;border:1.5px solid var(--ink);border-radius:26px;box-shadow:10px 10px 0 var(--sun);padding:16px 12px}
-  .phone .notch{width:50px;height:6px;border-radius:3px;background:var(--ink);margin:0 auto 18px}
-  .phone .big{height:18px;background:var(--lake);border-radius:4px;margin-bottom:10px}
-  .phone .cta{height:32px;border-radius:8px;background:var(--sun);margin-top:16px;display:grid;place-items:center;font-size:.7rem;font-weight:700}
-  .sticker{position:absolute;right:6%;bottom:18px;background:var(--sun);border:1.5px solid var(--ink);border-radius:50%;width:112px;height:112px;display:grid;place-items:center;text-align:center;font-size:.78rem;font-weight:700;line-height:1.2;transform:rotate(-10deg)}
+  /* hero harbor scene */
+  .stage{position:relative;height:480px}
+  .scene{position:absolute;inset:0 0 0 30px;border-radius:220px 220px 22px 22px;overflow:hidden;border:2px solid var(--ink);box-shadow:12px 12px 0 var(--lake)}
+  .scene svg{width:100%;height:100%;display:block}
+  .coords{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--paper);opacity:.75}
+  .beam{transform-origin:150px 140px;animation:sweep 6s ease-in-out infinite}
+  @keyframes sweep{0%,100%{transform:rotate(-14deg);opacity:.35}50%{transform:rotate(10deg);opacity:1}}
+  .boat{animation:bob 4s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(4px) rotate(1.5deg)}}
+  .waves{animation:roll 9s linear infinite}.w-b{animation-duration:13s;animation-direction:reverse}
+  @keyframes roll{to{transform:translateX(110px)}}
+  .ring{position:absolute;left:-10px;bottom:28px;width:124px;height:124px;animation:tilt 7s ease-in-out infinite}
+  .ring svg{width:100%;height:100%}
+  .ring b{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:"Bricolage Grotesque",sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;line-height:1.1;color:var(--ink);padding:0 38px}
+  @keyframes tilt{50%{transform:rotate(-8deg)}}
+  @media (prefers-reduced-motion:reduce){.beam,.boat,.waves,.ring{animation:none}}
+
+  /* nautical touches */
+  .no{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--buoy);margin-bottom:12px}
+  .no::before{content:"";width:22px;height:22px;flex:none;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d6452f' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3'/%3E%3Cpath d='M12 7l2 5-2 5-2-5z' fill='%23d6452f'/%3E%3C/svg%3E")}
+  .work .no{color:var(--sun)}
+  .work .no::before{filter:brightness(0) saturate(100%) invert(76%) sepia(47%) saturate(700%) hue-rotate(345deg)}
+  .contact .no{color:var(--sun)}
+  .wave{display:block;width:100%;height:46px;margin-bottom:-1px}
+  .wave.flip{transform:scaleY(-1);margin:-1px 0 0}
+  .rope{height:10px;background:repeating-linear-gradient(135deg,var(--sun) 0 6px,#c98f22 6px 12px);border-radius:5px;opacity:.9}
 
   /* marquee */
-  .marquee{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;padding:16px 0}
+  .marquee{background:var(--lake-2);color:var(--paper);overflow:hidden;white-space:nowrap;padding:16px 0}
   .track{display:inline-flex;gap:44px;animation:slide 28s linear infinite;font-size:1.5rem}
   .track span{display:inline-flex;align-items:center;gap:44px}
-  .track span::after{content:"✺";color:var(--sun);font-size:1rem}
+  .track span::after{content:"";width:20px;height:20px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f0b23a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='5' r='2.5'/%3E%3Cpath d='M12 7.5V21M7 11h10M4 14c0 4 4 7 8 7s8-3 8-7'/%3E%3C/svg%3E")}
   @keyframes slide{to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion:reduce){.track{animation:none}}
 
@@ -87,6 +97,7 @@
   .sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:50px;flex-wrap:wrap}
   .sec-head h2{font-size:clamp(2.4rem,5vw,4rem);line-height:1;letter-spacing:-.01em;max-width:680px}
   .sec-head p{color:var(--soft);max-width:360px}
+  .sec-head>div{flex:1 1 560px}
 
   /* services bento */
   .bento{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:auto auto;gap:18px}
@@ -127,6 +138,7 @@
   .ls{position:relative;padding-right:24px}
   .ls .dot{width:44px;height:44px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);display:grid;place-items:center;font-weight:700;margin-bottom:22px;position:relative}
   .ls:nth-child(odd) .dot{background:var(--sun)}
+  .ls:nth-child(even) .dot{background:var(--buoy);color:#fff;border-color:var(--buoy)}
   .ls h3{font-size:1.2rem;margin-bottom:6px}
   .ls p{color:var(--soft);font-size:.95rem}
 
@@ -134,7 +146,8 @@
   .pricing{background:var(--paper-2)}
   .plans{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:18px;align-items:stretch}
   .plan{background:var(--paper);border:1.5px solid var(--ink);border-radius:14px;padding:30px;display:flex;flex-direction:column}
-  .plan.main{background:var(--ink);color:var(--paper);transform:translateY(-10px);box-shadow:10px 10px 0 var(--sun)}
+  .plan.main{background:var(--ink);color:var(--paper);transform:translateY(-10px);box-shadow:10px 10px 0 var(--sun);position:relative;overflow:hidden;padding-top:44px}
+  .plan.main::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:repeating-linear-gradient(-45deg,var(--buoy) 0 14px,var(--paper) 14px 28px)}
   .plan .lbl{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lake)}
   .plan.main .lbl{color:var(--sun)}
   .plan .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.03em;font-size:3.2rem;line-height:1;margin:16px 0 6px}
@@ -181,12 +194,12 @@
   .fld label em{font-style:normal;font-weight:500;color:var(--soft)}
   .fld input,.fld textarea{font:inherit;font-size:16px;padding:13px 14px;border:1.5px solid var(--ink);border-radius:10px;background:#fff;color:var(--ink);width:100%}
   .fld textarea{min-height:110px;resize:vertical}
-  .fld input:focus,.fld textarea:focus{outline:none;border-color:var(--lake);box-shadow:0 0 0 3px rgba(15,76,92,.18)}
+  .fld input:focus,.fld textarea:focus{outline:none;border-color:var(--lake);box-shadow:0 0 0 3px rgba(21,70,107,.18)}
   .chipset{display:flex;flex-wrap:wrap;gap:8px;position:relative}
   .chipset input{position:absolute;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none}
   .chipset label{font-weight:600;font-size:.9rem;padding:9px 14px;border:1.5px solid var(--ink);border-radius:999px;cursor:pointer;background:#fff;transition:.15s}
   .chipset input:checked+label{background:var(--lake);border-color:var(--lake);color:#fff}
-  .chipset input:focus-visible+label{box-shadow:0 0 0 3px rgba(15,76,92,.3)}
+  .chipset input:focus-visible+label{box-shadow:0 0 0 3px rgba(21,70,107,.3)}
   .qform button{width:100%;font:700 1rem "DM Sans",sans-serif;background:var(--lake);color:#fff;border:0;border-radius:10px;padding:16px;cursor:pointer;margin-top:4px;transition:.15s}
   .qform button:hover{background:var(--lake-2)}
   .qform button:disabled{opacity:.6;cursor:wait}
@@ -204,7 +217,7 @@
   @media (max-width:900px){
     .menu{display:none}
     .hero,.local,.show{grid-template-columns:1fr}
-    .stage{height:400px;max-width:460px}
+    .stage{height:400px;max-width:460px;width:100%}
     .bento{grid-template-columns:1fr}
     .tile.web{grid-row:auto;min-height:0}
     .tile.web .mock{display:none}
@@ -257,7 +270,11 @@
 
     /* hero: short and to the point */
     .hero{padding:30px 20px 36px;gap:0}
-    .stage{display:none}
+    .stage{display:block;height:290px;margin-top:26px;order:2}
+    .scene{inset:0;border-radius:110px 110px 16px 16px;box-shadow:6px 6px 0 var(--lake)}
+    .ring{width:84px;height:84px;left:auto;right:-6px;bottom:-14px}
+    .ring b{font-size:.44rem;padding:0 26px}
+    .coords{display:none}
     .hero h1{margin:14px 0 16px}
     .hero p{font-size:1rem}
     .actions{margin-top:24px}
@@ -319,7 +336,7 @@
 <div class="top">
   <div class="wrap">
     <a href="#" class="brand" aria-label="Bay Harbor Marketing home">
-      <svg viewBox="0 0 64 64" width="42" height="42" aria-hidden="true"><defs><linearGradient id="lhb" x1="0" x2="1"><stop offset="0" stop-color="#f2b33d" stop-opacity=".95"/><stop offset="1" stop-color="#f2b33d" stop-opacity="0"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#0f4c5c"/><path d="M30 14 L58 5 L58 25 Z" fill="url(#lhb)"/><path d="M22 16h8l2 26H20z" fill="#f5f2ea"/><path d="M21.3 25h9.4l.5 5H20.8z" fill="#e0554a"/><path d="M20.6 34.5h10.8l.5 5H20.1z" fill="#e0554a"/><rect x="21" y="11" width="10" height="6" rx="1.5" fill="#f2b33d"/><path d="M20 11l6-4.5 6 4.5z" fill="#f5f2ea"/><path d="M8 46c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" fill="none" stroke="#f2b33d" stroke-width="3.2" stroke-linecap="round"/><path d="M8 54c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" fill="none" stroke="#f5f2ea" stroke-width="3.2" stroke-linecap="round" opacity=".7"/></svg>
+      <svg viewBox="0 0 64 64" width="46" height="46" aria-hidden="true"><defs><linearGradient id="hbm" x1="0" x2="1"><stop offset="0" stop-color="#f0b23a" stop-opacity=".95"/><stop offset="1" stop-color="#f0b23a" stop-opacity="0"/></linearGradient><clipPath id="hcp"><circle cx="32" cy="32" r="23.5"/></clipPath></defs><circle cx="32" cy="32" r="32" fill="#0e3150"/><circle cx="32" cy="32" r="27.5" fill="none" stroke="#f3eee2" stroke-width="2.2" stroke-dasharray="3.2 2.2"/><g clip-path="url(#hcp)"><circle cx="32" cy="32" r="24" fill="#15466b"/><path d="M29 20 L62 10 L62 30 Z" fill="url(#hbm)"/><path d="M24 22h8l1.8 22H22.2z" fill="#f3eee2"/><path d="M23.4 29h9.2l.4 4.4h-10z" fill="#d6452f"/><path d="M22.8 36.6h10.4l.4 4.4H22.4z" fill="#d6452f"/><rect x="23.2" y="17" width="9.6" height="5.6" rx="1.4" fill="#f0b23a"/><path d="M22.4 17.2l5.6-4.2 5.6 4.2z" fill="#f3eee2"/><path d="M14 44h36v20H14z" fill="#0e3150"/><path d="M6 45c3.5 0 3.5-2.6 7-2.6s3.5 2.6 7 2.6 3.5-2.6 7-2.6 3.5 2.6 7 2.6 3.5-2.6 7-2.6 3.5 2.6 7 2.6 3.5-2.6 7-2.6" fill="none" stroke="#f0b23a" stroke-width="2.8" stroke-linecap="round"/><path d="M6 51.5c3.5 0 3.5-2.6 7-2.6s3.5 2.6 7 2.6 3.5-2.6 7-2.6 3.5 2.6 7 2.6 3.5-2.6 7-2.6 3.5 2.6 7 2.6 3.5-2.6 7-2.6" fill="none" stroke="#f3eee2" stroke-width="2.8" stroke-linecap="round" opacity=".7"/></g></svg>
       <span class="wm"><b>Bay Harbor</b><small>Marketing</small></span>
     </a>
     <nav class="menu">
@@ -355,7 +372,7 @@
 
 <div class="wrap hero">
   <div>
-    <span class="kicker">Tawas City, Michigan · Working worldwide</span>
+    <span class="kicker">44.27° N, 83.52° W · Tawas City, Michigan</span>
     <h1 class="serif">Small businesses deserve <i>great</i> websites.</h1>
     <p>We're a team of three based in Tawas City, building websites and ads for businesses anywhere, then keeping them running for one simple monthly price.</p>
     <div class="actions">
@@ -364,25 +381,39 @@
     </div>
   </div>
   <div class="stage" aria-hidden="true">
-    <div class="win w1">
-      <div class="tb"><i></i><i></i><i></i></div>
-      <div class="in">
-        <div class="big"></div>
-        <div class="bar-l" style="width:90%"></div>
-        <div class="bar-l" style="width:75%"></div>
-        <span class="pill"></span>
-        <div class="tiles"><span></span><span></span><span></span></div>
-      </div>
+    <div class="scene">
+      <svg viewBox="0 0 440 440" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e3150"/><stop offset=".62" stop-color="#2c5d7f"/><stop offset=".74" stop-color="#e9a55a"/></linearGradient>
+          <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#f0b23a" stop-opacity=".85"/><stop offset="1" stop-color="#f0b23a" stop-opacity="0"/></linearGradient>
+          <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15466b"/><stop offset="1" stop-color="#0c1c2c"/></linearGradient>
+        </defs>
+        <rect width="440" height="440" fill="url(#sky)"/>
+        <g fill="#f3eee2" opacity=".8"><circle cx="60" cy="50" r="1.6"/><circle cx="130" cy="90" r="1.2"/><circle cx="210" cy="40" r="1.4"/><circle cx="330" cy="70" r="1.2"/><circle cx="390" cy="35" r="1.6"/><circle cx="290" cy="120" r="1"/><circle cx="30" cy="140" r="1"/></g>
+        <circle cx="330" cy="302" r="46" fill="#f0b23a" opacity=".9"/>
+        <g class="beam"><path d="M150 150 L520 80 L520 230 Z" fill="url(#beam)"/></g>
+        <path d="M0 330 Q60 300 110 318 L200 318 L200 330 Z" fill="#0c1c2c"/>
+        <path d="M100 322 L210 322 L220 336 L92 336 Z" fill="#0c1c2c"/>
+        <g>
+          <path d="M136 160 h28 l8 160 h-44 z" fill="#f3eee2"/>
+          <path d="M133.5 198 h33 l2.2 26 h-37.4 z" fill="#d6452f"/>
+          <path d="M129.8 250 h40.4 l2 26 h-44.4 z" fill="#d6452f"/>
+          <rect x="128" y="152" width="44" height="8" rx="2" fill="#0c1c2c"/>
+          <rect x="136" y="128" width="28" height="24" rx="3" fill="#f0b23a"/>
+          <path d="M130 128 L150 110 L170 128 Z" fill="#d6452f"/>
+          <rect x="146" y="288" width="8" height="20" rx="4" fill="#0c1c2c" opacity=".5"/>
+        </g>
+        <g class="boat"><path d="M300 318 h52 l-8 12 h-36 z" fill="#f3eee2"/><path d="M326 314 V262 L352 312 Z" fill="#f3eee2"/><path d="M322 314 V272 L304 312 Z" fill="#f0b23a"/></g>
+        <path d="M268 170 q6 -6 12 0 q6 -6 12 0" stroke="#f3eee2" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M236 200 q5 -5 10 0 q5 -5 10 0" stroke="#f3eee2" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <rect y="328" width="440" height="112" fill="url(#sea)"/>
+        <g class="waves w-a"><path d="M-440 350 q27.5 -12 55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0" stroke="#f0b23a" stroke-width="3" fill="none" opacity=".8"/></g>
+        <g class="waves w-b"><path d="M-440 380 q27.5 -12 55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0" stroke="#f3eee2" stroke-width="3" fill="none" opacity=".45"/></g>
+        <g class="waves w-a"><path d="M-440 412 q27.5 -12 55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0 t55 0" stroke="#f3eee2" stroke-width="3" fill="none" opacity=".25"/></g>
+      </svg>
+      <span class="coords">TAWAS POINT · LAKE HURON</span>
     </div>
-    <div class="phone">
-      <div class="notch"></div>
-      <div class="big"></div>
-      <div class="bar-l"></div>
-      <div class="bar-l" style="width:80%"></div>
-      <div class="bar-l" style="width:60%"></div>
-      <div class="cta">TAP TO CALL</div>
-    </div>
-    <div class="sticker">Built<br>in Tawas<br>City</div>
+    <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="46" fill="none" stroke="#f3eee2" stroke-width="24"/><circle cx="60" cy="60" r="46" fill="none" stroke="#d6452f" stroke-width="24" stroke-dasharray="36.1 36.1" transform="rotate(-18 60 60)"/><circle cx="60" cy="60" r="58" fill="none" stroke="#0c1c2c" stroke-width="2.5"/><circle cx="60" cy="60" r="34" fill="none" stroke="#0c1c2c" stroke-width="2.5"/><defs></defs></svg></div>
   </div>
 </div>
 
@@ -396,7 +427,7 @@
 <section id="services">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="serif">What we do <i>for you</i></h2>
+      <div><span class="no">Nº 01 · Services</span><h2 class="serif">What we do <i>for you</i></h2></div>
       <p>One small local team for your website, your ads, and keeping it all up to date.</p>
     </div>
     <div class="bento swipe" data-dots="svc-dots">
@@ -424,10 +455,11 @@
   </div>
 </section>
 
+<svg class="wave" viewBox="0 0 1440 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46V24c80-14 160-14 240 0s160 14 240 0 160-14 240 0 160 14 240 0 160-14 240 0 160 14 240 0v22z" fill="#15466b"/></svg>
 <section class="work" id="work">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="serif">Recent work</h2>
+      <div><span class="no">Nº 02 · Our work</span><h2 class="serif">Recent work</h2></div>
       <p>A site we built for a local shop. Click to see it live.</p>
     </div>
     <a class="show" href="https://ben-mocha.vercel.app" target="_blank" rel="noopener">
@@ -441,18 +473,19 @@
     <p class="more">More projects coming soon.</p>
   </div>
 </section>
+<svg class="wave flip" viewBox="0 0 1440 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46V24c80-14 160-14 240 0s160 14 240 0 160-14 240 0 160 14 240 0 160-14 240 0 160 14 240 0v22z" fill="#15466b"/></svg>
 
 <section id="process">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="serif">How it <i>works</i></h2>
+      <div><span class="no">Nº 03 · The voyage</span><h2 class="serif">How it <i>works</i></h2></div>
       <p>From first call to live site, simple and quick.</p>
     </div>
     <div class="line-steps swipe" data-dots="step-dots">
-      <div class="ls"><div class="dot">1</div><h3>Quick chat</h3><p>We talk about your business, your customers, and what you need.</p></div>
-      <div class="ls"><div class="dot">2</div><h3>Design</h3><p>We build a first version and tweak it until you love it.</p></div>
+      <div class="ls"><div class="dot">1</div><h3>Chart the course</h3><p>We talk about your business, your customers, and what you need.</p></div>
+      <div class="ls"><div class="dot">2</div><h3>Build the ship</h3><p>We build a first version and tweak it until you love it.</p></div>
       <div class="ls"><div class="dot">3</div><h3>Launch</h3><p>Your site goes live on your own domain, fast and secure.</p></div>
-      <div class="ls"><div class="dot">4</div><h3>Keep growing</h3><p>Ongoing updates and ads keep new customers coming in.</p></div>
+      <div class="ls"><div class="dot">4</div><h3>Full steam ahead</h3><p>Ongoing updates and ads keep new customers coming in.</p></div>
     </div>
     <div class="swipe-hint" id="step-dots"></div>
   </div>
@@ -461,7 +494,7 @@
 <section class="pricing" id="pricing">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="serif">Simple, honest <i>pricing</i></h2>
+      <div><span class="no">Nº 04 · Pricing</span><h2 class="serif">Simple, honest <i>pricing</i></h2></div>
       <p>One easy monthly plan keeps your site running and up to date. No fine print.</p>
     </div>
     <div class="tabs" role="tablist">
@@ -513,7 +546,7 @@
 <section id="local">
   <div class="wrap local">
     <div>
-      <h2 class="serif">Choose <i>local.</i></h2>
+      <div><span class="no">Nº 05 · Home port</span><h2 class="serif">Choose <i>local.</i></h2></div>
     </div>
     <div>
       <p>We're based in Tawas City, Michigan and work with businesses anywhere online. If you're in Iosco County, we'll gladly meet you in person. Hiring local keeps your money in the community.</p>
@@ -527,11 +560,12 @@
   </div>
 </section>
 
+<svg class="wave" viewBox="0 0 1440 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46V24c80-14 160-14 240 0s160 14 240 0 160-14 240 0 160 14 240 0 160-14 240 0 160 14 240 0v22z" fill="#0c1c2c"/></svg>
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="contact-grid">
       <div>
-        <h2 class="serif">Let's get you <i>online.</i></h2>
+        <div><span class="no">Nº 06 · Contact</span><h2 class="serif">Let's get you <i>online.</i></h2></div>
         <div class="big-links">
           <a class="bl" href="tel:9899158771"><span>Call or text</span><strong>(989) 915-8771</strong></a>
           <a class="bl" href="mailto:harborm989@gmail.com?subject=Website%20quote"><span>Email</span><strong>harborm989@gmail.com</strong></a>
@@ -568,7 +602,7 @@
       </form>
     </div>
     <div class="foot">
-      <span>© <span id="yr">2026</span> Bay Harbor Marketing · Tawas City, Michigan · Serving clients worldwide</span>
+      <span>⚓︎ © <span id="yr">2026</span> Bay Harbor Marketing · Tawas City, Michigan · Serving clients worldwide</span>
       <span>We usually reply the same day.</span>
     </div>
   </div>
