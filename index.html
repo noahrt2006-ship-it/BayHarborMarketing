@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
   :root{
     --paper:#f3eee2; --paper-2:#e8e0cf; --ink:#0c1c2c; --soft:#56606a;
@@ -31,8 +32,12 @@
   .serif i{font-style:normal;color:var(--lake)}
 
   /* top bar */
-  .top{border-bottom:1px solid var(--line)}
-  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+  .top{position:sticky;top:0;z-index:30;background:rgba(243,238,226,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .25s}
+  .top.scrolled{box-shadow:0 6px 24px -14px rgba(12,28,44,.45)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px;transition:height .25s}
+  .top.scrolled .wrap{height:62px}
+  .brand svg{transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
+  .brand:hover svg{transform:rotate(-12deg)}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
   .brand svg{flex:none;display:block}
   .wm{display:flex;flex-direction:column;line-height:1}
@@ -41,7 +46,10 @@
   .wm small::before,.wm small::after{content:"";height:1.5px;width:12px;background:var(--buoy)}
   .brand .mark{width:34px;height:34px;border-radius:50%;background:var(--lake);display:grid;place-items:center}
   .menu{display:flex;gap:26px;font-size:.93rem;color:var(--soft)}
+  .menu a{position:relative;padding:4px 0}
+  .menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--buoy);transform:scaleX(0);transform-origin:left;transition:transform .25s}
   .menu a:hover{color:var(--ink)}
+  .menu a:hover::after{transform:scaleX(1)}
   .call{font-weight:600;font-size:.93rem;border:1.5px solid var(--ink);padding:8px 16px;border-radius:8px;transition:.15s}
   .call:hover{background:var(--ink);color:var(--paper)}
 
@@ -53,6 +61,20 @@
   .hero p{font-size:1.15rem;color:var(--soft);max-width:520px}
   .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
   .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;padding:14px 22px;border-radius:8px;transition:.15s}
+  .btn:active{transform:scale(.97)}
+  .btn.dark:hover{box-shadow:4px 4px 0 var(--sun)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:8px}
+  .go,.btn{white-space:nowrap}
+  .show:hover .go{letter-spacing:.02em}
+  .go{transition:letter-spacing .2s}
+  /* scroll reveal */
+  .js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .js .rv.in{opacity:1;transform:none}
+  .js .hero-in>*{opacity:0;transform:translateY(16px);animation:heroin .8s cubic-bezier(.2,.7,.2,1) forwards}
+  .js .hero-in>*:nth-child(2){animation-delay:.08s}.js .hero-in>*:nth-child(3){animation-delay:.18s}.js .hero-in>*:nth-child(4){animation-delay:.28s}
+  @keyframes heroin{to{opacity:1;transform:none}}
+  .js .stage{animation:heroin 1s .2s cubic-bezier(.2,.7,.2,1) both}
+  @media (prefers-reduced-motion:reduce){.js .rv,.js .hero-in>*,.js .stage{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}}
   .btn.dark{background:var(--lake);color:#fff}
   .btn.dark:hover{background:var(--lake-2)}
   .btn.line{border:1.5px solid var(--ink)}
@@ -380,7 +402,7 @@
 </nav>
 
 <div class="wrap hero">
-  <div>
+  <div class="hero-in">
     <span class="kicker">44.27° N, 83.52° W · Tawas City, Michigan</span>
     <h1 class="serif">Small businesses deserve <i>great</i> websites.</h1>
     <p>We're a team of three based in Tawas City, building websites and ads for businesses anywhere, then keeping them running for one simple monthly price.</p>
@@ -502,6 +524,7 @@
   </div>
 </section>
 
+<svg class="wave" viewBox="0 0 1440 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46V24c80-14 160-14 240 0s160 14 240 0 160-14 240 0 160 14 240 0 160-14 240 0 160 14 240 0v22z" fill="#e8e0cf"/></svg>
 <section class="pricing" id="pricing">
   <div class="wrap">
     <div class="sec-head">
@@ -556,6 +579,7 @@
   </div>
 </section>
 
+<svg class="wave flip" viewBox="0 0 1440 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46V24c80-14 160-14 240 0s160 14 240 0 160-14 240 0 160 14 240 0 160-14 240 0 160 14 240 0v22z" fill="#e8e0cf"/></svg>
 <section id="local">
   <div class="wrap local">
     <div>
@@ -673,5 +697,18 @@ qf.addEventListener('submit',async e=>{
 });
 </script>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+// header shadow on scroll
+const topbar=document.querySelector('.top');
+addEventListener('scroll',()=>topbar.classList.toggle('scrolled',scrollY>10),{passive:true});
+// reveal on scroll
+const rvSel='.sec-head,.tile,.show,.ls,.plans,.tabs,.fact,.local>div>p,.qform,.big-links .bl';
+const mob=matchMedia('(max-width:700px)').matches;
+const els=[...document.querySelectorAll(rvSel)].filter(el=>!(mob&&el.parentElement.classList.contains('swipe'))).concat(mob?[...document.querySelectorAll('.swipe')]:[]);
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=e.target;t.classList.add('in');io.unobserve(t);setTimeout(()=>{t.classList.remove('rv','in');t.style.transitionDelay=''},1300)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach((el,i)=>{el.classList.add('rv');const sib=[...el.parentElement.children].filter(c=>c.matches(rvSel));const k=sib.indexOf(el);if(k>0)el.style.transitionDelay=(Math.min(k,4)*90)+'ms';io.observe(el)});
+}
+</script>
 </body>
 </html>
