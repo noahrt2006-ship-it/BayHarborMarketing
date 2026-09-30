@@ -212,7 +212,7 @@
   @media (max-width:700px){.qform{padding:22px;box-shadow:6px 6px 0 var(--sun)}.f2{grid-template-columns:1fr;gap:0}.contact-grid .big-links{margin-top:24px}}
 
   /* mobile-only bits (hidden on desktop) */
-  .burger,.drawer,.dock,.tabs,.swipe-hint{display:none}
+  .burger,.drawer,.dock,.tabs,.swipe-hint,.mob-only{display:none}
 
   @media (max-width:900px){
     .menu{display:none}
@@ -301,12 +301,22 @@
     .show .txt h3{display:none}
 
     /* pricing tabs */
-    .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--paper);border:1.5px solid var(--ink);border-radius:12px;padding:5px;margin-bottom:16px}
-    .tabs button{font:600 .92rem "DM Sans",sans-serif;border:0;background:none;padding:11px 4px;border-radius:8px;color:var(--ink);cursor:pointer}
-    .tabs button.on{background:var(--ink);color:var(--paper)}
-    .plans{max-width:none}
+    .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--paper);border:1.5px solid var(--ink);border-radius:12px;padding:5px;margin-bottom:16px;position:relative}
+    .tabs .pill{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px)/3);background:var(--ink);border-radius:8px;transition:transform .45s cubic-bezier(.34,1.4,.5,1)}
+    .tabs button{position:relative;z-index:1;font:600 .92rem "DM Sans",sans-serif;border:0;background:none;padding:11px 4px;border-radius:8px;color:var(--ink);cursor:pointer;transition:color .25s}
+    .tabs button.on{color:var(--paper)}
+    .plans{max-width:none;overflow:hidden;padding:4px 2px 8px;margin:0 -2px;touch-action:pan-y}
     .plan{display:none;box-shadow:none!important}
     .plan.show-it{display:flex}
+    .plan.in-r{animation:sailR .45s cubic-bezier(.2,.8,.25,1)}
+    .plan.in-l{animation:sailL .45s cubic-bezier(.2,.8,.25,1)}
+    @keyframes sailR{from{opacity:0;transform:translateX(60px) rotate(2deg)}to{opacity:1;transform:none}}
+    @keyframes sailL{from{opacity:0;transform:translateX(-60px) rotate(-2deg)}to{opacity:1;transform:none}}
+    .plan.show-it .price,.plan.show-it li{animation:rise .5s both}
+    .plan.show-it li:nth-child(1){animation-delay:.12s}.plan.show-it li:nth-child(2){animation-delay:.17s}.plan.show-it li:nth-child(3){animation-delay:.22s}.plan.show-it li:nth-child(4){animation-delay:.27s}
+    .plan.show-it .price{animation-delay:.06s}
+    @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .swipe-note{display:block;text-align:center;font-size:.8rem;color:var(--soft);margin-top:6px}
     .plan .price{font-size:2.8rem}
 
     /* local */
@@ -498,6 +508,7 @@
       <p>One easy monthly plan keeps your site running and up to date. No fine print.</p>
     </div>
     <div class="tabs" role="tablist">
+      <span class="pill" aria-hidden="true"></span>
       <button data-plan="0">Build</button>
       <button data-plan="1" class="on">Care plan</button>
       <button data-plan="2">Ads</button>
@@ -540,6 +551,7 @@
         <a href="#quote" class="btn line">Let's talk</a>
       </div>
     </div>
+    <span class="swipe-note mob-only">Swipe or tap to compare plans</span>
   </div>
 </section>
 
@@ -621,7 +633,19 @@ burger.addEventListener('click',()=>{const o=top_.classList.toggle('open');burge
 document.querySelectorAll('.drawer a').forEach(a=>a.addEventListener('click',()=>{top_.classList.remove('open');burger.setAttribute('aria-expanded',false)}));
 // pricing tabs
 const tabs=document.querySelectorAll('.tabs button'), plans=document.querySelectorAll('.plan');
-tabs.forEach(b=>b.addEventListener('click',()=>{tabs.forEach(t=>t.classList.remove('on'));b.classList.add('on');plans.forEach((p,i)=>p.classList.toggle('show-it',i==b.dataset.plan))}));
+const pill=document.querySelector('.tabs .pill'); let cur=1;
+function goPlan(n){
+  if(n<0||n>2||n===cur) return;
+  const dir=n>cur?'in-r':'in-l'; cur=n;
+  tabs.forEach(t=>t.classList.toggle('on',+t.dataset.plan===n));
+  pill.style.transform='translateX('+(n*100)+'%)';
+  plans.forEach((p,i)=>{p.classList.remove('in-r','in-l','show-it'); if(i===n){void p.offsetWidth; p.classList.add('show-it',dir)}});
+}
+pill.style.transform='translateX(100%)';
+tabs.forEach(b=>b.addEventListener('click',()=>goPlan(+b.dataset.plan)));
+let sx=null,sy=null; const pw=document.querySelector('.plans');
+pw.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+pw.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3)goPlan(cur+(dx<0?1:-1));sx=null},{passive:true});
 // swipe dots
 document.querySelectorAll('.swipe').forEach(row=>{
   const dots=document.getElementById(row.dataset.dots); if(!dots) return;
