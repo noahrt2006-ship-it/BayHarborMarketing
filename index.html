@@ -122,20 +122,8 @@
   .show{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid rgba(255,255,255,.25);border-radius:16px;overflow:hidden;transition:transform .2s}
   .show:hover{transform:translateY(-4px)}
   .show{background:var(--lake-2)}
-  .show .vis{background:var(--paper);padding:30px;display:flex;align-items:center;min-height:320px;position:relative;overflow:hidden}
-  .show .vis::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-18px;height:60px;background:no-repeat center/100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 q25 -12 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 V40 H0z' fill='%2315466b' opacity='.18'/%3E%3C/svg%3E")}
-  .browser2{width:100%;background:#fff;border:1.5px solid var(--ink);border-radius:12px;overflow:hidden;box-shadow:8px 8px 0 var(--sun);position:relative;z-index:1}
-  .browser2 .bb{display:flex;align-items:center;gap:6px;padding:10px 12px;background:var(--lake);border-bottom:1.5px solid var(--ink)}
-  .browser2 .bb i{width:9px;height:9px;border-radius:50%;background:var(--paper);opacity:.8}
-  .browser2 .bb i:first-child{background:var(--buoy);opacity:1}
-  .browser2 .bb span{margin-left:10px;font-size:.72rem;font-weight:600;color:var(--paper);background:rgba(255,255,255,.14);padding:3px 10px;border-radius:6px}
-  .browser2 .pg{padding:26px 24px 30px;color:var(--ink)}
-  .browser2 small{font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--buoy)}
-  .browser2 b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1;margin:10px 0 8px}
-  .browser2 em{font-style:normal;color:var(--soft);font-size:.95rem}
-  .browser2 .fake{display:flex;gap:8px;margin-top:18px}
-  .browser2 .fake span{height:30px;border-radius:7px;background:var(--lake);flex:0 0 110px}
-  .browser2 .fake span+span{background:none;border:1.5px solid var(--ink);flex-basis:90px}
+  .show .vis{background:var(--ink);padding:44px 36px;display:flex;align-items:center;justify-content:center;min-height:300px}
+  .show .vis img{width:100%;max-width:380px;height:auto;display:block}
   .show .txt{padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px}
   .show .txt h3{font-size:2.4rem;line-height:1}
   .show .txt p{color:rgba(255,255,255,.8)}
@@ -306,7 +294,7 @@
     .ls .dot{margin-bottom:14px}
 
     /* work */
-    .show .vis{min-height:0;padding:22px 22px 28px}
+    .show .vis{min-height:0;padding:40px 28px}
     .show .txt{padding:24px;gap:10px}
     .show .txt h3{display:none}
 
@@ -485,7 +473,7 @@
       <p>A site we built for a local shop. Click to see it live.</p>
     </div>
     <a class="show" href="https://ben-mocha.vercel.app" target="_blank" rel="noopener">
-      <div class="vis"><div class="browser2"><div class="bb"><i></i><i></i><i></i><span>ben-mocha.vercel.app</span></div><div class="pg"><small>East Tawas, MI</small><b>After Five Tint</b><em>Auto, home &amp; commercial window tinting</em><div class="fake"><span></span><span></span></div></div></div></div>
+      <div class="vis"><img src="after-five-tint-logo.png" alt="After 5 Tint logo" width="1260" height="136"></div>
       <div class="txt">
         <h3 class="serif">After Five Tint</h3>
         <p>A bold, mobile-friendly site for a local tint, wrap, and detailing shop, built to show off their services and get customers to call.</p>
