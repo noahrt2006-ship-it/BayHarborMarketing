@@ -33,6 +33,10 @@
   .top{border-bottom:1px solid var(--line)}
   .top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
+  .brand svg{flex:none;display:block}
+  .wm{display:flex;flex-direction:column;line-height:1}
+  .wm b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.03em}
+  .wm small{font-size:.66rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--lake);margin-top:4px}
   .brand .mark{width:34px;height:34px;border-radius:50%;background:var(--lake);display:grid;place-items:center}
   .menu{display:flex;gap:26px;font-size:.93rem;color:var(--soft)}
   .menu a:hover{color:var(--ink)}
@@ -266,9 +270,9 @@
 
 <div class="top">
   <div class="wrap">
-    <a href="#" class="brand">
-      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f2b33d" stroke-width="2.2" stroke-linecap="round"><path d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" stroke="#fff"/><circle cx="12" cy="8" r="3" fill="#f2b33d" stroke="none"/></svg></span>
-      Bay Harbor Marketing
+    <a href="#" class="brand" aria-label="Bay Harbor Marketing home">
+      <svg viewBox="0 0 64 64" width="42" height="42" aria-hidden="true"><defs><linearGradient id="lhb" x1="0" x2="1"><stop offset="0" stop-color="#f2b33d" stop-opacity=".95"/><stop offset="1" stop-color="#f2b33d" stop-opacity="0"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#0f4c5c"/><path d="M30 14 L58 5 L58 25 Z" fill="url(#lhb)"/><path d="M22 16h8l2 26H20z" fill="#f5f2ea"/><path d="M21.3 25h9.4l.5 5H20.8z" fill="#e0554a"/><path d="M20.6 34.5h10.8l.5 5H20.1z" fill="#e0554a"/><rect x="21" y="11" width="10" height="6" rx="1.5" fill="#f2b33d"/><path d="M20 11l6-4.5 6 4.5z" fill="#f5f2ea"/><path d="M8 46c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" fill="none" stroke="#f2b33d" stroke-width="3.2" stroke-linecap="round"/><path d="M8 54c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" fill="none" stroke="#f5f2ea" stroke-width="3.2" stroke-linecap="round" opacity=".7"/></svg>
+      <span class="wm"><b>Bay Harbor</b><small>Marketing</small></span>
     </a>
     <nav class="menu">
       <a href="#services">Services</a>
