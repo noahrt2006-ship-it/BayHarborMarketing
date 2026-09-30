@@ -83,6 +83,26 @@
   .work-info p{color:var(--muted);margin-bottom:22px}
   .work-info .btn{align-self:flex-start}
 
+
+  /* pricing */
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  .price{background:var(--white);border-radius:var(--radius);padding:34px;display:flex;flex-direction:column;box-shadow:0 1px 0 var(--sand-2),0 10px 30px -18px rgba(12,34,51,.35)}
+  .price.featured{background:var(--navy);color:var(--white);position:relative}
+  .price.featured .muted,.price.featured li{color:rgba(255,255,255,.85)}
+  .price h3{font-size:1.3rem;margin-bottom:6px}
+  .price:not(.featured) h3{color:var(--navy)}
+  .amt{font-family:Fraunces,serif;font-size:2.6rem;font-weight:700;line-height:1;margin:14px 0 4px}
+  .amt small{font-family:Inter,sans-serif;font-size:1rem;font-weight:500;opacity:.7}
+  .muted{color:var(--muted);font-size:.95rem}
+  .price ul{list-style:none;margin:22px 0 28px;display:grid;gap:10px;flex:1}
+  .price li{padding-left:26px;position:relative;color:var(--muted)}
+  .price li::before{content:"";position:absolute;left:0;top:.45em;width:14px;height:8px;border-left:2.5px solid var(--sea);border-bottom:2.5px solid var(--sea);transform:rotate(-45deg)}
+  .price.featured li::before{border-color:var(--coral)}
+  .badge{position:absolute;top:-12px;left:34px;background:var(--coral);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .price .btn{text-align:center}
+  .price:not(.featured) .btn{background:var(--navy)}
+  .price:not(.featured) .btn:hover{background:var(--navy-2)}
+
   /* why */
   .why{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
   .checks{list-style:none;display:grid;gap:16px}
@@ -109,6 +129,7 @@
     .grid,.steps{grid-template-columns:1fr 1fr}
     .why{grid-template-columns:1fr}
     .work-card{grid-template-columns:1fr}
+    .prices{grid-template-columns:1fr;max-width:480px}
     .links a:not(.btn){display:none}
   }
   @media (max-width:560px){
@@ -131,6 +152,7 @@
       <a href="#services">Services</a>
       <a href="#work">Our work</a>
       <a href="#process">How it works</a>
+      <a href="#pricing">Pricing</a>
       <a href="#why">Why us</a>
       <a href="#contact" class="btn">Get a quote</a>
     </nav>
@@ -213,6 +235,54 @@
       <div class="step"><h3>Design</h3><p>We build a first version and tweak it until you love it.</p></div>
       <div class="step"><h3>Launch</h3><p>Your site goes live on your own domain, fast and secure.</p></div>
       <div class="step"><h3>Keep growing</h3><p>Ongoing updates and ads keep new customers coming in.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="head">
+      <h2>Simple, honest pricing</h2>
+      <p>One easy monthly plan keeps your site running and up to date. No contracts full of fine print.</p>
+    </div>
+    <div class="prices">
+      <div class="price">
+        <h3>Website Build</h3>
+        <div class="amt">Free quote</div>
+        <p class="muted">One-time fee, based on what your business needs</p>
+        <ul>
+          <li>Custom design for your business</li>
+          <li>Looks great on phones and computers</li>
+          <li>Tap-to-call and contact buttons</li>
+          <li>Set up on your own domain</li>
+        </ul>
+        <a href="#contact" class="btn">Get a quote</a>
+      </div>
+      <div class="price featured">
+        <span class="badge">Most important</span>
+        <h3>Care Plan</h3>
+        <div class="amt">$55<small>/month</small></div>
+        <p class="muted">Everything to keep your site live and fresh</p>
+        <ul>
+          <li>Hosting included</li>
+          <li>Security and backups</li>
+          <li>Changes and updates whenever you need them</li>
+          <li>A local team you can actually reach</li>
+        </ul>
+        <a href="#contact" class="btn">Get started</a>
+      </div>
+      <div class="price">
+        <h3>Ads</h3>
+        <div class="amt">Ask us</div>
+        <p class="muted">Priced to fit your goals and budget</p>
+        <ul>
+          <li>Facebook and Instagram ads</li>
+          <li>Google ads</li>
+          <li>Eye-catching ad designs</li>
+          <li>Reach customers near you</li>
+        </ul>
+        <a href="#contact" class="btn">Let's talk</a>
+      </div>
     </div>
   </div>
 </section>
